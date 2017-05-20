@@ -91,7 +91,6 @@ function onButtonClick(event) {
 }
 
 function onSoundEnd() {
-  debugger
   ui.removeImage()
 }
 
