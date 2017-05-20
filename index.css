@@ -1,0 +1,14 @@
+#click-me {
+  width: 35vw;
+  height: 35vh;
+  background-color: darkgray;
+}
+
+#image {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  background-color: #000;
+  transition: opacity linear 2s;
+  opacity: 0;
+}
