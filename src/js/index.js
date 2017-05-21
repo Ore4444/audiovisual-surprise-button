@@ -43,5 +43,5 @@ document.addEventListener('DOMContentLoaded', function init() {
 })
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw/sw.js')
+    navigator.serviceWorker.register('/sw.js')
 }
