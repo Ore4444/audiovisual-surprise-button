@@ -125,9 +125,7 @@
         });
     });
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw/sw.js', {
-            scope: './'
-        });
+        navigator.serviceWorker.register('/sw/sw.js');
     }
 
 }());

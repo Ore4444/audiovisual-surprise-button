@@ -116,7 +116,7 @@ const fileManifest = [
   },
   {
     "url": "/index.js",
-    "revision": "aed840652fa3ab8145326c384e3bdbb2"
+    "revision": "21a333ff9bd570576e36f3fb17c875e3"
   },
   {
     "url": "/sounds/agam.mp3",
@@ -212,7 +212,7 @@ const fileManifest = [
   },
   {
     "url": "/sw/sw.js",
-    "revision": "3b96e8d7a5bfcbcdccfa0b599e1dbb07"
+    "revision": "a48c7425a20cf45e4f95528b3e58f22a"
   },
   {
     "url": "/sw/workbox-sw.prod.v1.0.0.js",
