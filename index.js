@@ -75,7 +75,10 @@
                 sound.id = 'sound-' + $.name;
                 sound.className = 'sound';
                 document.querySelector(containerSelecter).appendChild(sound);
-                sound.addEventListener('ended', onSoundEnd);
+                sound.addEventListener('ended', function onSoundEnd() {
+                    ui.image.hideAll();
+                    ui.button.enable();
+                });
                 return $;
             },
             get: function get$$1($) {
@@ -105,10 +108,6 @@
     }
 
     var state = void 0;
-    function onButtonClick() {
-        pipe(getRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
-    }
-
     function buildData(filenames) {
         var data = [];
         filenames.forEach(function(name) {
@@ -121,15 +120,15 @@
         return data;
     }
 
-    function init() {
-        ui.button.get().addEventListener('click', onButtonClick);
+    document.addEventListener('DOMContentLoaded', function init() {
         state = buildData(constants.filenames);
         state.forEach(function($) {
             ui.image.create($, '.images');
             ui.sound.create($, '.sounds');
         });
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
+        ui.button.get().addEventListener('click', function onButtonClick() {
+            pipe(getRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
+        });
+    });
 
 }());

@@ -6,20 +6,6 @@ import '../scss/index.scss'
 
 let state
 
-function onButtonClick() {
-    pipe(
-        getRandomItem,
-        ui.image.show,
-        ui.sound.play,
-        ui.button.disable,
-    )(state)
-}
-
-function onSoundEnd() {
-    ui.image.hideAll()
-    ui.button.enable()
-}
-
 function buildData(filenames) {
     const data = []
   
@@ -32,15 +18,20 @@ function buildData(filenames) {
     return data
 }
 
-function init() {
-    ui.button.get().addEventListener('click', onButtonClick)
-  
+document.addEventListener('DOMContentLoaded', function init() {  
     state = buildData(constants.filenames)
 
     state.forEach($ => {
         ui.image.create($, '.images')
         ui.sound.create($, '.sounds')
     })
-}
 
-document.addEventListener('DOMContentLoaded', init)
+    ui.button.get().addEventListener('click', function onButtonClick() {
+        pipe(
+            getRandomItem,
+            ui.image.show,
+            ui.sound.play,
+            ui.button.disable,
+        )(state)
+    })
+})

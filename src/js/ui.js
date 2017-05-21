@@ -55,7 +55,11 @@ const ui = {
             sound.id = 'sound-' + $.name
             sound.className = 'sound'
             document.querySelector(containerSelecter).appendChild(sound)
-            sound.addEventListener('ended', onSoundEnd)
+            
+            sound.addEventListener('ended', function onSoundEnd() {
+                ui.image.hideAll()
+                ui.button.enable()
+            })
       
             return $
         },
