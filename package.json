@@ -1,0 +1,39 @@
+{
+  "name": "audiovisual-surprise-button",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "lint": "eslint --fix src/**/*.js",
+    "dist": "npm run lint && rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ore4444/audiovisual-surprise-button.git"
+  },
+  "author": "Ore Landau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ore4444/audiovisual-surprise-button/issues"
+  },
+  "homepage": "https://github.com/Ore4444/audiovisual-surprise-button#readme",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-inline-imports-commonjs": "^1.2.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "eslint": "^3.19.0",
+    "pre-push": "^0.1.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-cleanup": "^1.0.0",
+    "rollup-plugin-esformatter": "^0.3.0",
+    "rollup-plugin-sass": "^0.5.2",
+    "rollup-watch": "^3.2.2"
+  },
+  "pre-push": [
+    "lint"
+  ]
+}

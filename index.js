@@ -1,141 +1,135 @@
-const constants = {}
+(function() {
+    'use strict';
 
-constants.rootHostingFolder = 'https://ore4444.github.io/birthday-surprise-button/'
-constants.soundsFolder = constants.rootHostingFolder + 'audio/'
-constants.imagesFolder = constants.rootHostingFolder + 'images/'
-constants.imagesFileExtension = '.jpg'
-constants.soundsFileExtension = '.mp3'
-constants.filenames = ['agam', 'avraham', 'gilad', 'ilana', 'mali', 'noga', 'rome', 'toam', 'ayellet', 'gita', 'itay', 'margalit', 'ore', 'shalev', 'tsuf', 'aviv', 'eden', 'hila', 'lizz', 'rami', 'shlomi', 'yossi',]
+    var rootHostingFolder = 'https://ore4444.github.io/audiovisual-surprise-button/';
+    var soundsFolder = rootHostingFolder + 'sounds/';
+    var imagesFolder = rootHostingFolder + 'images/';
+    var imagesFileExtension = '.jpg';
+    var soundsFileExtension = '.mp3';
+    var filenames = ['agam', 'avraham', 'gilad', 'ilana', 'mali', 'noga', 'rome', 'toam', 'ayellet', 'gita', 'itay', 'margalit', 'ore', 'shalev', 'tsuf', 'aviv', 'eden', 'hila', 'lizz', 'rami', 'shlomi', 'yossi'];
+    var constants = {
+        soundsFolder: soundsFolder,
+        imagesFolder: imagesFolder,
+        imagesFileExtension: imagesFileExtension,
+        soundsFileExtension: soundsFileExtension,
+        filenames: filenames
+    };
 
-let data;
+    var toConsumableArray = function(arr) {
+        if (Array.isArray(arr)) {
+            for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
 
-const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
+            return arr2;
+        } else {
+            return Array.from(arr);
+        }
+    };
 
-const fn = {
-	getRandomItem(data) {
-		return data[Math.floor(Math.random()*data.length)]
-	},
-}
+    var ui = {
+        image: {
+            create: function create($, containerSelecter) {
+                var image = document.createElement('img');
+                image.src = $.imageUrl;
+                image.id = 'image-' + $.name;
+                image.className = 'image';
+                document.querySelector(containerSelecter).appendChild(image);
+                return $;
+            },
+            get: function get$$1($) {
+                return document.getElementById('image-' + $.name);
+            },
+            getAll: function getAll() {
+                return [].concat(toConsumableArray(document.getElementsByClassName('image')));
+            },
+            show: function show($) {
+                var image = ui.image.get($);
+                image.style.transform = 'none';
+                return $;
+            },
+            hideAll: function hideAll($) {
+                var images = ui.image.getAll();
+                images.forEach(function(image) {
+                    return image.style.transform = 'translateY(calc(-100vh)';
+                });
+                return $;
+            }
+        },
+        button: {
+            get: function get$$1() {
+                return document.getElementById('button');
+            },
+            enable: function enable($) {
+                var button = ui.button.get();
+                button.disabled = false;
+                return $;
+            },
+            disable: function disable($) {
+                var button = ui.button.get();
+                button.disabled = true;
+                return $;
+            }
+        },
+        sound: {
+            create: function create($, containerSelecter) {
+                var sound = new Audio($.soundUrl);
+                sound.id = 'sound-' + $.name;
+                sound.className = 'sound';
+                document.querySelector(containerSelecter).appendChild(sound);
+                sound.addEventListener('ended', onSoundEnd);
+                return $;
+            },
+            get: function get$$1($) {
+                return document.getElementById('sound-' + $.name);
+            },
+            play: function play($) {
+                var sound = ui.sound.get($);
+                sound.play();
+                return $;
+            }
+        }
+    };
 
-const ui = {
-  image: {
-    create($, containerSelecter) {
-      const image = document.createElement('img')
-      image.src = $.imageUrl
-      image.id = 'image-' + $.name
-      image.className = 'image'
-      document.querySelector(containerSelecter).appendChild(image)
-
-      return $
-    },
-    
-    get($) {
-      return document.getElementById('image-' + $.name)
-    },
-  
-    getAll($) {
-      return [...document.getElementsByClassName('image')]
-    },
-
-    show($) {
-      const image = ui.image.get($)
-      image.style.transform = 'none'
-      return $
-    },
-    
-    hideAll($) {
-      const images = ui.image.getAll()
-      for (const image of images) {
-        image.style.transform = 'translateY(calc(-100vh)'
-      }
-      return $
-    },
-  },
-
-  button: {
-    get() {
-      return document.getElementById('button')
-    },
-
-    enable($) {
-      const button = ui.button.get()
-      button.disabled = false
-      return $
-    },
-    
-    disable($) {
-      const button = ui.button.get()
-      button.disabled = true
-      return $
-    },
-  },
-  
-  sound: {
-    create($, containerSelecter) {
-      const sound = new Audio($.soundUrl)
-      sound.id = 'sound-' + $.name
-      sound.className = 'sound'
-      document.querySelector(containerSelecter).appendChild(sound)
-      sound.addEventListener('ended', onSoundEnd)
-      
-      return $
-    },
-    
-    get($) {
-      return document.getElementById('sound-' + $.name)
-    },
-
-    play($) {
-      const sound = ui.sound.get($)
-      sound.play()
-      return $
+    function pipe() {
+        for (var _len = arguments.length, fns = Array(_len), _key = 0; _key < _len; _key++) {
+            fns[_key] = arguments[_key];
+        }
+        return function(x) {
+            return fns.reduce(function(y, f) {
+                return f(y);
+            }, x);
+        };
     }
-  },
-}
 
-function nextItem(data) {
-  var count = -1;
-  return () => data[++count % data.length]
-}
+    function getRandomItem(array) {
+        return array[Math.floor(Math.random() * array.length)];
+    }
 
-function onButtonClick(event) {
-  pipe(
-    fn.getRandomItem,
-    ui.image.show,
-    ui.sound.play,
-    ui.button.disable,
-  )
-  (data)
-}
+    var state = void 0;
+    function onButtonClick() {
+        pipe(getRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
+    }
 
-function onSoundEnd() {
-  ui.image.hideAll()
-  ui.button.enable()
-}
+    function buildData(filenames) {
+        var data = [];
+        filenames.forEach(function(name) {
+            return data.push({
+                imageUrl: constants.imagesFolder + name + constants.imagesFileExtension,
+                soundUrl: constants.soundsFolder + name + constants.soundsFileExtension,
+                name: name
+            });
+        });
+        return data;
+    }
 
-function buildData(filenames) {
-  const data = []
-  
-  filenames.forEach(name => data.push({
-    imageUrl: constants.imagesFolder + name + constants.imagesFileExtension,
-    soundUrl: constants.soundsFolder + name + constants.soundsFileExtension,
-    name
-  }))
-  
-  return data
-}
+    function init() {
+        ui.button.get().addEventListener('click', onButtonClick);
+        state = buildData(constants.filenames);
+        state.forEach(function($) {
+            ui.image.create($, '.images');
+            ui.sound.create($, '.sounds');
+        });
+    }
 
-function init() {
-  ui.button.get().addEventListener('click', onButtonClick)
-  
-  data = buildData(constants.filenames)
+    document.addEventListener('DOMContentLoaded', init);
 
-  for (const $ of data) {
-    ui.image.create($, '.images')
-    ui.sound.create($, '.sounds')
-  }
-
-  ui.image.hideAll()
-}
-
-init()
+}());
