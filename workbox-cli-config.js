@@ -8,6 +8,6 @@ module.exports = {
     "..\\workbox-cli-config.js",
   ],
   modifyUrlPrefix: {
-    '/': ''
+    '/': '/audiovisual-surprise-button/'
   }
 };
