@@ -124,5 +124,10 @@
             pipe(getRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
         });
     });
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw/sw.js', {
+            scope: './'
+        });
+    }
 
 }());

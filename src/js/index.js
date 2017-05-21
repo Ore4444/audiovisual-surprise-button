@@ -41,3 +41,7 @@ document.addEventListener('DOMContentLoaded', function init() {
         )(state)
     })
 })
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw/sw.js', {scope: './'})
+}
