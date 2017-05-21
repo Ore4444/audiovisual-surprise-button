@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "lint": "eslint --fix src/**/*.js",
-    "dist": "npm run lint && rollup -c rollup.config.js",
+    "dist": "npm run lint && rollup -c rollup.config.js && npm run sw",
+    "sw": "workbox-cli generate:sw",
     "dev": "rollup -c rollup.config.js -w"
   },
   "repository": {
@@ -35,5 +36,8 @@
   },
   "pre-push": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "workbox-sw": "^1.0.0"
+  }
 }

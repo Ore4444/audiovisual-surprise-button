@@ -6,7 +6,7 @@ import cleanup from 'rollup-plugin-cleanup'
 export default {
     format: 'iife',
     entry: 'src/js/index.js',
-    dest: 'index.js',
+    dest: 'docs/index.js',
     external: [],
     interop: true,
     plugins: [
