@@ -1,14 +1,57 @@
-#click-me {
-  width: 35vw;
-  height: 35vh;
-  background-color: darkgray;
+html, body {
+  height: 100%
 }
 
-button {
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: #2196f3;
+}
+
+
+.button-container {
+  background: #0f0f0f;
+  width: 250px;
+  height: 250px;
+  position: relative;
+  box-shadow: 15px 15px 50px 5px #5f5f5f;
+}
+
+.button {
+  background: #f00000;
+  width: 80%;
+  height: 80%;
+  position: relative;
+  top: 2%;
+  left: 10%;
+  box-shadow: 0 25px 0 0 #8C0606;
+  border: none;
+  transition: all 0.2s ease;
   cursor: pointer;
 }
-button[disabled] {
+.button:active {
+  box-shadow: 0 1px 1px 1px #8C0606;
+  top: 10%;
+}
+.button:focus {
+  outline: 0;
+}
+.button[disabled] {
   cursor: default;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
 }
 
 .image {
@@ -16,6 +59,6 @@ button[disabled] {
   height: 300px;
   position: absolute;
   background-color: #000;
-  transition: opacity linear 2s;
-  opacity: 0;
+  transition: transform linear .5s;
+  transform: translateY(-100vh);
 }

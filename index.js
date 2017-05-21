@@ -37,21 +37,16 @@ const ui = {
       return [...document.getElementsByClassName('image')]
     },
 
-    animateOut() {
-      const image = ui.image.get()
-      image.style.opacity = 0
-    },
-
     show($) {
       const image = ui.image.get($)
-      image.style = 'opacity:1;'
+      image.style.transform = 'none'
       return $
     },
     
     hideAll($) {
       const images = ui.image.getAll()
       for (const image of images) {
-        image.style = 'opacity:0;'
+        image.style.transform = 'translateY(calc(-100vh)'
       }
       return $
     },
@@ -59,7 +54,7 @@ const ui = {
 
   button: {
     get() {
-      return document.getElementById('click-me')
+      return document.getElementById('button')
     },
 
     enable($) {
@@ -139,6 +134,8 @@ function init() {
     ui.image.create($, '.images')
     ui.sound.create($, '.sounds')
   }
+
+  ui.image.hideAll()
 }
 
 init()
