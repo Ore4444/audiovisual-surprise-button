@@ -4,7 +4,7 @@
     var rootHostingFolder = 'https://ore4444.github.io/audiovisual-surprise-button/';
     var SOUNDS_FOLDER = rootHostingFolder + 'sounds/';
     var IMAGES_FOLDER = rootHostingFolder + 'images/';
-    var IMAGES_FILE_EXTENSION = '.jpg';
+    var IMAGES_FILE_EXTENSION = '.webp';
     var SOUNDS_FILE_EXTENSION = '.mp3';
     var SOUNDS_SELECTOR = '.sounds';
     var IMAGES_SELECTOR = '.images';

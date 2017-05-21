@@ -19,6 +19,94 @@ importScripts('workbox-sw.prod.v1.0.0.js');
  */
 const fileManifest = [
   {
+    "url": "/images/agam.webp",
+    "revision": "79964036d66a497e7c2a818cec43e45f"
+  },
+  {
+    "url": "/images/aviv.webp",
+    "revision": "b0194468990b10e4576a868224940f24"
+  },
+  {
+    "url": "/images/avraham.webp",
+    "revision": "cff1cf3b2a4d0d1a9cfc13a85b5b22b8"
+  },
+  {
+    "url": "/images/ayellet.webp",
+    "revision": "4cd3f5717939377a1703ce4316791466"
+  },
+  {
+    "url": "/images/eden.webp",
+    "revision": "f0581b42b6c6059e18de9ac7a3c141bf"
+  },
+  {
+    "url": "/images/gilad.webp",
+    "revision": "69b3150c45b5d147437efacc10466acb"
+  },
+  {
+    "url": "/images/gita.webp",
+    "revision": "9252d586dc3a451b0d1dbedd0187c43d"
+  },
+  {
+    "url": "/images/hila.webp",
+    "revision": "7a087a904afc35b568ebff39a056d34e"
+  },
+  {
+    "url": "/images/ilana.webp",
+    "revision": "c000186b8d7b9261bfe74398ebcdf845"
+  },
+  {
+    "url": "/images/itay.webp",
+    "revision": "065f6ab229544d5c879508da0a545702"
+  },
+  {
+    "url": "/images/lizz.webp",
+    "revision": "66a075cdb40019d74654e3817232021b"
+  },
+  {
+    "url": "/images/mali.webp",
+    "revision": "6baaa6871f59b60d83f10f016732a652"
+  },
+  {
+    "url": "/images/margalit.webp",
+    "revision": "6854f3901354790d5c9df513e0a96390"
+  },
+  {
+    "url": "/images/noga.webp",
+    "revision": "e8e73a14e5d5bcd1acc9d111716e9358"
+  },
+  {
+    "url": "/images/ore.webp",
+    "revision": "b51f246634b7a9e4c15f4783b04e624b"
+  },
+  {
+    "url": "/images/rami.webp",
+    "revision": "50dfcce96d82f7519bef0575b0847d2b"
+  },
+  {
+    "url": "/images/rome.webp",
+    "revision": "f0f01f0d469d786ef33f47c4198ceb26"
+  },
+  {
+    "url": "/images/shalev.webp",
+    "revision": "9fff6f56bba6630b8ba4959465c71455"
+  },
+  {
+    "url": "/images/shlomi.webp",
+    "revision": "1fcedb4e5454b71c4e924ef27e59807f"
+  },
+  {
+    "url": "/images/toam.webp",
+    "revision": "1720cf92af48d9d3678efca968f8d794"
+  },
+  {
+    "url": "/images/tsuf.webp",
+    "revision": "aa635f63fa05f21c2969e351d4c7f390"
+  },
+  {
+    "url": "/images/yossi.webp",
+    "revision": "7a057e52988d95734c52295b525d375f"
+  },
+  {
     "url": "/index.css",
     "revision": "d8b36b615092fda758d39cbcff976edd"
   },
@@ -28,7 +116,7 @@ const fileManifest = [
   },
   {
     "url": "/index.js",
-    "revision": "ded269c8d13e610d8ed5be0e3a2fe492"
+    "revision": "3d1430b918ebaa8b8831645e7dcd4733"
   },
   {
     "url": "/sounds/agam.mp3",
@@ -123,11 +211,11 @@ const fileManifest = [
     "revision": "3aa4c1e17d3112aa01249bfdfb691eec"
   },
   {
-    "url": "/sw.js",
-    "revision": "a149b1d99e74ccb47e6a25ce70a63553"
+    "url": "/sw/sw.js",
+    "revision": "64cebe2b63a13f3a299ca3fda2306239"
   },
   {
-    "url": "/workbox-sw.prod.v1.0.0.js",
+    "url": "/sw/workbox-sw.prod.v1.0.0.js",
     "revision": "9029a00430d1c6ccf363f3ad77c45d42"
   }
 ];

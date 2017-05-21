@@ -3,7 +3,7 @@ const rootHostingFolder = 'https://ore4444.github.io/audiovisual-surprise-button
 const SOUNDS_FOLDER = rootHostingFolder + 'sounds/'
 const IMAGES_FOLDER = rootHostingFolder + 'images/'
 
-const IMAGES_FILE_EXTENSION = '.jpg'
+const IMAGES_FILE_EXTENSION = '.webp'
 const SOUNDS_FILE_EXTENSION = '.mp3'
 
 const SOUNDS_SELECTOR = '.sounds'
