@@ -4,6 +4,13 @@
   background-color: darkgray;
 }
 
+button {
+  cursor: pointer;
+}
+button[disabled] {
+  cursor: default;
+}
+
 #image {
   width: 300px;
   height: 300px;
