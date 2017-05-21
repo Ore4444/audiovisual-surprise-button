@@ -14,8 +14,8 @@ body {
 
 .button-container {
   background: #0f0f0f;
-  width: 75vw;
-  height: 75vh;
+  width: 75vmin;
+  height: 75vmin;
   position: relative;
   box-shadow: 15px 15px 50px 5px #5f5f5f;
 }
@@ -36,6 +36,7 @@ body {
   box-shadow: 0 1px 1px 1px #8C0606;
   top: 10%;
 }
+.button-container:focus,
 .button:focus {
   outline: 0;
 }
@@ -55,8 +56,8 @@ body {
 }
 
 .image {
-  width: 75vw;
-  height: 75vh;
+  width: 75vmin;
+  height: 75vmin;
   position: absolute;
   background-color: #000;
   transition: transform linear .5s;
