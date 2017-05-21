@@ -26,24 +26,16 @@ const fn = {
   playSound($) {
     ui.createSound($)
   },
-  
-  showImage($) {
-    return ui.createImage($)
-	},
-  
-  hideImage($) {
-    return ui.removeImage($)
-  },
 }
 
 const ui = {
   createImage($) {
-		const image = document.createElement('img')
+    const image = document.createElement('img')
     image.src = $.imageUrl
     image.id = 'image'
     document.body.appendChild(image)
     image.style = 'opacity:1;'
-    
+
     return $
 	},
   
@@ -60,9 +52,10 @@ const ui = {
     image.style.opacity = 0
   },
   
-  removeImage() {
+  removeImage($) {
     const image = ui.getImage() 
-    image.parentNode.removeChild(image)
+    image.remove()
+    return $
   },
   
   createSound($) {
@@ -73,7 +66,19 @@ const ui = {
     sound.addEventListener('ended', onSoundEnd);
     
     return $
-  }
+  },
+
+  enableButton($) {
+    const button = ui.getButton()
+    button.disabled = false
+    return $
+  },
+  
+  disableButton($) {
+    const button = ui.getButton()
+    button.disabled = true
+    return $
+  },
 }
 
 function nextItem(data) {
@@ -84,14 +89,16 @@ function nextItem(data) {
 function onButtonClick(event) {
   pipe(
     fn.getRandomItem,
-    fn.showImage,
-    fn.playSound,
+    ui.createImage,
+    ui.createSound,
+    ui.disableButton,
   )
   (data)
 }
 
 function onSoundEnd() {
   ui.removeImage()
+  ui.enableButton()
 }
 
 function init(data) {
