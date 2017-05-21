@@ -1,4 +1,4 @@
-import constants from './constants'
+import {SOUNDS_FOLDER, IMAGES_FOLDER, IMAGES_FILE_EXTENSION, SOUNDS_FILE_EXTENSION, FILENAMES} from './constants'
 import ui from './ui'
 import {pipe, getRandomItem} from './helpers'
 
@@ -10,8 +10,8 @@ function buildData(filenames) {
     const data = []
   
     filenames.forEach(name => data.push({
-        imageUrl: constants.imagesFolder + name + constants.imagesFileExtension,
-        soundUrl: constants.soundsFolder + name + constants.soundsFileExtension,
+        imageUrl: IMAGES_FOLDER + name + IMAGES_FILE_EXTENSION,
+        soundUrl: SOUNDS_FOLDER + name + SOUNDS_FILE_EXTENSION,
         name,
     }))
   
@@ -19,9 +19,9 @@ function buildData(filenames) {
 }
 
 document.addEventListener('DOMContentLoaded', function init() {  
-    state = buildData(constants.filenames)
+    const data = buildData(FILENAMES)
 
-    state.forEach($ => {
+    data.forEach($ => {
         ui.image.create($, '.images')
         ui.sound.create($, '.sounds')
     })
@@ -32,6 +32,6 @@ document.addEventListener('DOMContentLoaded', function init() {
             ui.image.show,
             ui.sound.play,
             ui.button.disable,
-        )(state)
+        )(data)
     })
 })

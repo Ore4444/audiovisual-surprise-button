@@ -31,17 +31,21 @@ body {
   border: none;
   transition: all 0.2s ease;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &[disabled] {
+    cursor: default;
+  }
+
+  &:active {
+    box-shadow: 0 1px 1px 1px #8C0606;
+    top: 10%;
+  }
 }
-.button:active {
-  box-shadow: 0 1px 1px 1px #8C0606;
-  top: 10%;
-}
+
 .button-container:focus,
 .button:focus {
   outline: 0;
-}
-.button[disabled] {
-  cursor: default;
 }
 
 .circle {

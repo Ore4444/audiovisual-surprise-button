@@ -2,18 +2,11 @@
     'use strict';
 
     var rootHostingFolder = 'https://ore4444.github.io/audiovisual-surprise-button/';
-    var soundsFolder = rootHostingFolder + 'sounds/';
-    var imagesFolder = rootHostingFolder + 'images/';
-    var imagesFileExtension = '.jpg';
-    var soundsFileExtension = '.mp3';
-    var filenames = ['agam', 'avraham', 'gilad', 'ilana', 'mali', 'noga', 'rome', 'toam', 'ayellet', 'gita', 'itay', 'margalit', 'ore', 'shalev', 'tsuf', 'aviv', 'eden', 'hila', 'lizz', 'rami', 'shlomi', 'yossi'];
-    var constants = {
-        soundsFolder: soundsFolder,
-        imagesFolder: imagesFolder,
-        imagesFileExtension: imagesFileExtension,
-        soundsFileExtension: soundsFileExtension,
-        filenames: filenames
-    };
+    var SOUNDS_FOLDER = rootHostingFolder + 'sounds/';
+    var IMAGES_FOLDER = rootHostingFolder + 'images/';
+    var IMAGES_FILE_EXTENSION = '.jpg';
+    var SOUNDS_FILE_EXTENSION = '.mp3';
+    var FILENAMES = ['agam', 'avraham', 'gilad', 'ilana', 'mali', 'noga', 'rome', 'toam', 'ayellet', 'gita', 'itay', 'margalit', 'ore', 'shalev', 'tsuf', 'aviv', 'eden', 'hila', 'lizz', 'rami', 'shlomi', 'yossi'];
 
     var toConsumableArray = function(arr) {
         if (Array.isArray(arr)) {
@@ -49,7 +42,7 @@
             hideAll: function hideAll($) {
                 var images = ui.image.getAll();
                 images.forEach(function(image) {
-                    return image.style.transform = 'translateY(calc(-100vh)';
+                    return image.style.transform = 'translateY(-100vh)';
                 });
                 return $;
             }
@@ -107,13 +100,12 @@
         return array[Math.floor(Math.random() * array.length)];
     }
 
-    var state = void 0;
     function buildData(filenames) {
         var data = [];
         filenames.forEach(function(name) {
             return data.push({
-                imageUrl: constants.imagesFolder + name + constants.imagesFileExtension,
-                soundUrl: constants.soundsFolder + name + constants.soundsFileExtension,
+                imageUrl: IMAGES_FOLDER + name + IMAGES_FILE_EXTENSION,
+                soundUrl: SOUNDS_FOLDER + name + SOUNDS_FILE_EXTENSION,
                 name: name
             });
         });
@@ -121,13 +113,13 @@
     }
 
     document.addEventListener('DOMContentLoaded', function init() {
-        state = buildData(constants.filenames);
-        state.forEach(function($) {
+        var data = buildData(FILENAMES);
+        data.forEach(function($) {
             ui.image.create($, '.images');
             ui.sound.create($, '.sounds');
         });
         ui.button.get().addEventListener('click', function onButtonClick() {
-            pipe(getRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
+            pipe(getRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(data);
         });
     });
 

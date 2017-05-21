@@ -26,18 +26,17 @@ body {
   box-shadow: 0 25px 0 0 #8C0606;
   border: none;
   transition: all 0.2s ease;
-  cursor: pointer; }
-
-.button:active {
-  box-shadow: 0 1px 1px 1px #8C0606;
-  top: 10%; }
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent; }
+  .button[disabled] {
+    cursor: default; }
+  .button:active {
+    box-shadow: 0 1px 1px 1px #8C0606;
+    top: 10%; }
 
 .button-container:focus,
 .button:focus {
   outline: 0; }
-
-.button[disabled] {
-  cursor: default; }
 
 .circle {
   border-radius: 50%; }

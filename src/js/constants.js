@@ -1,14 +1,14 @@
 const rootHostingFolder = 'https://ore4444.github.io/audiovisual-surprise-button/'
 
-const soundsFolder = rootHostingFolder + 'sounds/'
+const SOUNDS_FOLDER = rootHostingFolder + 'sounds/'
 
-const imagesFolder = rootHostingFolder + 'images/'
+const IMAGES_FOLDER = rootHostingFolder + 'images/'
 
-const imagesFileExtension = '.jpg'
+const IMAGES_FILE_EXTENSION = '.jpg'
 
-const soundsFileExtension = '.mp3'
+const SOUNDS_FILE_EXTENSION = '.mp3'
 
-const filenames = [
+const FILENAMES = [
     'agam',
     'avraham',
     'gilad',
@@ -33,4 +33,4 @@ const filenames = [
     'yossi',
 ]
 
-export default {soundsFolder, imagesFolder, imagesFileExtension, soundsFileExtension, filenames}
+export {SOUNDS_FOLDER, IMAGES_FOLDER, IMAGES_FILE_EXTENSION, SOUNDS_FILE_EXTENSION, FILENAMES}
