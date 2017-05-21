@@ -26,7 +26,9 @@ const ui = {
     
         hideAll($) {
             const images = ui.image.getAll()
-            images.forEach(image => image.style.transform = '')
+            images.forEach(image => {
+                image.style.transform = ''
+            })
             return $
         },
     },
