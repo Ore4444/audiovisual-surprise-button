@@ -6,5 +6,8 @@ module.exports = {
   "swDest": "docs/sw.js",
   "globIgnores": [
     "..\\workbox-cli-config.js",
-  ]
+  ],
+  modifyUrlPrefix: {
+    '/': ''
+  }
 };
