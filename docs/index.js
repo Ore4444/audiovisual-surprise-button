@@ -2,8 +2,8 @@
     'use strict';
 
     var rootHostingFolder = 'https://ore4444.github.io/audiovisual-surprise-button/';
-    var SOUNDS_FOLDER = rootHostingFolder + 'sounds/';
-    var IMAGES_FOLDER = rootHostingFolder + 'images/';
+    var SOUNDS_FOLDER = rootHostingFolder + 'assets/sounds/';
+    var IMAGES_FOLDER = rootHostingFolder + 'assets/images/';
     var IMAGES_FILE_EXTENSION = '.webp';
     var SOUNDS_FILE_EXTENSION = '.mp3';
     var SOUNDS_SELECTOR = '.sounds';
@@ -21,8 +21,9 @@
         };
     }
 
-    function getRandomItem(array) {
-        return array[Math.floor(Math.random() * array.length)];
+    function spliceRandomItem(array) {
+        var randomIndex = Math.floor(Math.random() * array.length);
+        return array.splice(randomIndex, 1)[0];
     }
 
     var toConsumableArray = function(arr) {
@@ -121,7 +122,7 @@
             ui.sound.create($, SOUNDS_SELECTOR);
         });
         ui.button.get().addEventListener('click', function onButtonClick() {
-            pipe(getRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
+            pipe(spliceRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
         });
     });
     if ('serviceWorker' in navigator) {

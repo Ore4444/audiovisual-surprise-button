@@ -2,8 +2,9 @@ function pipe(...fns) {
     return x => fns.reduce((y, f) => f(y), x)
 }
 
-function getRandomItem(array) {
-    return array[Math.floor(Math.random() * array.length)]
+function spliceRandomItem(array) {
+    const randomIndex = Math.floor(Math.random() * array.length)
+    return array.splice(randomIndex, 1)[0]
 }
 
-export {pipe, getRandomItem}
+export {pipe, spliceRandomItem}

@@ -7,7 +7,7 @@ import {
     IMAGES_SELECTOR,
     FILENAMES,
 } from './constants'
-import {pipe, getRandomItem} from './helpers'
+import {pipe, spliceRandomItem} from './helpers'
 import ui from './ui'
 
 import '../scss/index.scss'
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function init() {
 
     ui.button.get().addEventListener('click', function onButtonClick() {
         pipe(
-            getRandomItem,
+            spliceRandomItem,
             ui.image.show,
             ui.sound.play,
             ui.button.disable,
