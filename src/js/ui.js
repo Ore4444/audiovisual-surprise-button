@@ -1,11 +1,11 @@
 const ui = {
     image: {
-        create($, containerSelecter) {
+        create($, containerSelector) {
             const image = document.createElement('img')
             image.src = $.imageUrl
             image.id = 'image-' + $.name
             image.className = 'image'
-            document.querySelector(containerSelecter).appendChild(image)
+            document.querySelector(containerSelector).appendChild(image)
 
             return $
         },
@@ -52,11 +52,11 @@ const ui = {
     },
   
     sound: {
-        create($, containerSelecter) {
+        create($, containerSelector) {
             const sound = new Audio($.soundUrl)
             sound.id = 'sound-' + $.name
             sound.className = 'sound'
-            document.querySelector(containerSelecter).appendChild(sound)
+            document.querySelector(containerSelector).appendChild(sound)
             
             sound.addEventListener('ended', function onSoundEnd() {
                 ui.image.hideAll()
