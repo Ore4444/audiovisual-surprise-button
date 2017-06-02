@@ -38,12 +38,12 @@
 
     var ui = {
         image: {
-            create: function create($, containerSelecter) {
+            create: function create($, containerSelector) {
                 var image = document.createElement('img');
                 image.src = $.imageUrl;
                 image.id = 'image-' + $.name;
                 image.className = 'image';
-                document.querySelector(containerSelecter).appendChild(image);
+                document.querySelector(containerSelector).appendChild(image);
                 return $;
             },
             get: function get$$1($) {
@@ -81,11 +81,11 @@
             }
         },
         sound: {
-            create: function create($, containerSelecter) {
+            create: function create($, containerSelector) {
                 var sound = new Audio($.soundUrl);
                 sound.id = 'sound-' + $.name;
                 sound.className = 'sound';
-                document.querySelector(containerSelecter).appendChild(sound);
+                document.querySelector(containerSelector).appendChild(sound);
                 sound.addEventListener('ended', function onSoundEnd() {
                     ui.image.hideAll();
                     ui.button.enable();
@@ -103,6 +103,15 @@
         }
     };
 
+    document.addEventListener('DOMContentLoaded', function init() {
+        var state = buildState(FILENAMES);
+        ui.button.get().addEventListener('click', function onButtonClick() {
+            if (!state.length) {
+                state = buildState(FILENAMES);
+            }
+            playOne(state);
+        });
+    });
     function buildState(filenames) {
         var state = [];
         filenames.forEach(function(name) {
@@ -112,19 +121,17 @@
                 name: name
             });
         });
-        return state;
-    }
-
-    document.addEventListener('DOMContentLoaded', function init() {
-        var state = buildState(FILENAMES);
         state.forEach(function($) {
             ui.image.create($, IMAGES_SELECTOR);
             ui.sound.create($, SOUNDS_SELECTOR);
         });
-        ui.button.get().addEventListener('click', function onButtonClick() {
-            pipe(spliceRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
-        });
-    });
+        return state;
+    }
+
+    function playOne(state) {
+        pipe(spliceRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
+    }
+
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js');
     }
