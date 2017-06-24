@@ -11,8 +11,9 @@ export default {
     interop: true,
     plugins: [
         babel({
-            exclude: ['**/*.scss']
+            exclude: ['**/*.scss'],
         }),
+
         esformatter({
             indent: {
                 value: '    ',
@@ -28,7 +29,9 @@ export default {
                 },
             },
         }),
+
         sass({output: true}),
+
         cleanup(),
     ],
 }

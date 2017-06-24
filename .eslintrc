@@ -193,10 +193,6 @@
                 "afterColon": true
             }
         ],
-        "linebreak-style": [
-            "warn",
-            "unix"
-        ],
         "lines-around-directive": [
             "warn",
             "always"

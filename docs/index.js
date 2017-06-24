@@ -8,7 +8,6 @@
     var SOUNDS_FILE_EXTENSION = '.mp3';
     var SOUNDS_SELECTOR = '.sounds';
     var IMAGES_SELECTOR = '.images';
-    var FILENAMES = ['agam', 'avraham', 'gilad', 'ilana', 'mali', 'noga', 'rome', 'toam', 'ayellet', 'gita', 'itay', 'margalit', 'ore', 'shalev', 'tsuf', 'aviv', 'eden', 'hila', 'lizz', 'rami', 'shlomi', 'yossi'];
 
     function pipe() {
         for (var _len = arguments.length, fns = Array(_len), _key = 0; _key < _len; _key++) {
@@ -103,15 +102,6 @@
         }
     };
 
-    document.addEventListener('DOMContentLoaded', function init() {
-        var state = buildState(FILENAMES);
-        ui.button.get().addEventListener('click', function onButtonClick() {
-            if (!state.length) {
-                state = buildState(FILENAMES);
-            }
-            playOne(state);
-        });
-    });
     function buildState(filenames) {
         var state = [];
         filenames.forEach(function(name) {
@@ -121,10 +111,6 @@
                 name: name
             });
         });
-        state.forEach(function($) {
-            ui.image.create($, IMAGES_SELECTOR);
-            ui.sound.create($, SOUNDS_SELECTOR);
-        });
         return state;
     }
 
@@ -132,6 +118,25 @@
         pipe(spliceRandomItem, ui.image.show, ui.sound.play, ui.button.disable)(state);
     }
 
+    function onConfigReady(config) {
+        var state = buildState(config.filenames);
+        state.forEach(function($) {
+            ui.image.create($, IMAGES_SELECTOR);
+            ui.sound.create($, SOUNDS_SELECTOR);
+        });
+        ui.button.get().addEventListener('click', function onButtonClick() {
+            if (!state.length) {
+                state = buildState(config.filenames);
+            }
+            playOne(state);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function init() {
+        fetch('./config.json').then(function(res) {
+            return res.json();
+        }).then(onConfigReady);
+    });
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js');
     }

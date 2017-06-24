@@ -5,7 +5,6 @@ import {
     IMAGES_FOLDER,
     IMAGES_FILE_EXTENSION,
     IMAGES_SELECTOR,
-    FILENAMES,
 } from './constants'
 import {pipe, spliceRandomItem} from './helpers'
 import ui from './ui'
@@ -21,11 +20,6 @@ function buildState(filenames) {
         name,
     }))
 
-    state.forEach($ => {
-        ui.image.create($, IMAGES_SELECTOR)
-        ui.sound.create($, SOUNDS_SELECTOR)
-    })
-
     return state
 }
 
@@ -38,16 +32,27 @@ function playOne(state) {
     )(state)
 }
 
-document.addEventListener('DOMContentLoaded', function init() {
-    let state = buildState(FILENAMES)
+function onConfigReady(config) {
+    let state = buildState(config.filenames)
+
+    state.forEach($ => {
+        ui.image.create($, IMAGES_SELECTOR)
+        ui.sound.create($, SOUNDS_SELECTOR)
+    })
 
     ui.button.get().addEventListener('click', function onButtonClick() {
         if (!state.length) {
-            state = buildState(FILENAMES)
+            state = buildState(config.filenames)
         }
 
         playOne(state)
     })
+}
+
+document.addEventListener('DOMContentLoaded', function init() {
+    fetch('./config.json')
+        .then(res => res.json())
+        .then(onConfigReady)
 })
 
 if ('serviceWorker' in navigator) {
