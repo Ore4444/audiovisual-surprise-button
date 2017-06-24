@@ -1,10 +1,8 @@
 import 'url-search-params-polyfill'
 
 import {
-    SOUNDS_FOLDER,
     SOUNDS_FILE_EXTENSION,
     SOUNDS_SELECTOR,
-    IMAGES_FOLDER,
     IMAGES_FILE_EXTENSION,
     IMAGES_SELECTOR,
 } from './constants'
