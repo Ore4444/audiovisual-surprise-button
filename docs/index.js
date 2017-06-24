@@ -1,9 +1,6 @@
 (function() {
     'use strict';
 
-    var rootHostingFolder = 'https://ore4444.github.io/audiovisual-surprise-button/';
-    var SOUNDS_FOLDER = rootHostingFolder + 'assets/sounds/';
-    var IMAGES_FOLDER = rootHostingFolder + 'assets/images/';
     var IMAGES_FILE_EXTENSION = '.webp';
     var SOUNDS_FILE_EXTENSION = '.mp3';
     var SOUNDS_SELECTOR = '.sounds';
@@ -102,12 +99,12 @@
         }
     };
 
-    function buildState(filenames) {
+    function buildState(config) {
         var state = [];
-        filenames.forEach(function(name) {
+        config.fileNames.forEach(function(name) {
             return state.push({
-                imageUrl: IMAGES_FOLDER + name + IMAGES_FILE_EXTENSION,
-                soundUrl: SOUNDS_FOLDER + name + SOUNDS_FILE_EXTENSION,
+                imageUrl: config.imagesFolder + name + IMAGES_FILE_EXTENSION,
+                soundUrl: config.soundsFolder + name + SOUNDS_FILE_EXTENSION,
                 name: name
             });
         });
@@ -119,21 +116,23 @@
     }
 
     function onConfigReady(config) {
-        var state = buildState(config.filenames);
+        var state = buildState(config);
         state.forEach(function($) {
             ui.image.create($, IMAGES_SELECTOR);
             ui.sound.create($, SOUNDS_SELECTOR);
         });
         ui.button.get().addEventListener('click', function onButtonClick() {
             if (!state.length) {
-                state = buildState(config.filenames);
+                state = buildState(config);
             }
             playOne(state);
         });
     }
 
     document.addEventListener('DOMContentLoaded', function init() {
-        fetch('./config.json').then(function(res) {
+        var urlParams = new URLSearchParams(location.search);
+        var configName = urlParams.get('config') ? urlParams.get('config') : 'savta75';
+        fetch('./configs/' + configName + '.json').then(function(res) {
             return res.json();
         }).then(onConfigReady);
     });

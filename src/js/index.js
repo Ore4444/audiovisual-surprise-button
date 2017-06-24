@@ -1,3 +1,5 @@
+import 'url-search-params-polyfill'
+
 import {
     SOUNDS_FOLDER,
     SOUNDS_FILE_EXTENSION,
@@ -11,12 +13,12 @@ import ui from './ui'
 
 import '../scss/index.scss'
 
-function buildState(filenames) {
+function buildState(config) {
     const state = []
 
-    filenames.forEach(name => state.push({
-        imageUrl: IMAGES_FOLDER + name + IMAGES_FILE_EXTENSION,
-        soundUrl: SOUNDS_FOLDER + name + SOUNDS_FILE_EXTENSION,
+    config.fileNames.forEach(name => state.push({
+        imageUrl: config.imagesFolder + name + IMAGES_FILE_EXTENSION,
+        soundUrl: config.soundsFolder + name + SOUNDS_FILE_EXTENSION,
         name,
     }))
 
@@ -33,7 +35,7 @@ function playOne(state) {
 }
 
 function onConfigReady(config) {
-    let state = buildState(config.filenames)
+    let state = buildState(config)
 
     state.forEach($ => {
         ui.image.create($, IMAGES_SELECTOR)
@@ -42,7 +44,7 @@ function onConfigReady(config) {
 
     ui.button.get().addEventListener('click', function onButtonClick() {
         if (!state.length) {
-            state = buildState(config.filenames)
+            state = buildState(config)
         }
 
         playOne(state)
@@ -50,7 +52,10 @@ function onConfigReady(config) {
 }
 
 document.addEventListener('DOMContentLoaded', function init() {
-    fetch('./config.json')
+    const urlParams = new URLSearchParams(location.search)
+    const configName = urlParams.get('config') ? urlParams.get('config') : 'savta75'
+
+    fetch(`./configs/${configName}.json`)
         .then(res => res.json())
         .then(onConfigReady)
 })
